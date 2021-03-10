@@ -27,6 +27,8 @@ function jal_install()
     add_option('jal_db_version', $jal_db_version);
 }
 
+register_activation_hook(__FILE__, 'jal_install');
+
 //add menu_admin
 add_action('admin_menu', 'my_menu');
 function my_menu()
