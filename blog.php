@@ -26,3 +26,16 @@ function jal_install()
     dbDelta($sql);
     add_option('jal_db_version', $jal_db_version);
 }
+
+//add menu_admin
+add_action('admin_menu', 'my_menu');
+function my_menu()
+{
+    add_menu_page(
+        'liste des jeux', //<title>
+        'Liste des jeux', //titre du menu
+        'manage_options', //capabilities - https://wordpress.org/support/article/roles-and-capabilities/#manage_options
+        'game_list', //slug et url
+        'game_list' //$function
+    );
+};
