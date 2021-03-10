@@ -26,19 +26,27 @@ function game_list()
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="">Update</a>
-                        <a href=""> Delete</a>
-                    </td>
-                </tr>
-
+                <?php
+                global $wpdb;
+                // création de variable
+                $table_name = $wpdb->prefix . 'video_game';
+                $games = $wpdb->get_results("SELECT id,name,price from $table_name");
+                foreach ($games as $game) {
+                ?>
+                    <tr>
+                        <td><?= $game->id; ?></td>
+                        <td><?= $game->name; ?></td>
+                        <td><?= $game->price; ?></td>
+                        <td>
+                            <a href="<?php echo admin_url('admin.php?page=game_update&id=' . $game->id); ?>">Update</a>
+                            <a href="<?php echo admin_url('admin.php?page=game_delete&id=' . $game->id); ?>"> Delete</a>
+                        </td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
 <?php
 }
+add_shortcode('short_games_list', 'game_list');
 ?>
