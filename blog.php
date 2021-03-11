@@ -48,9 +48,18 @@ function my_menu()
         'game_add', //slug et url
         'game_add' //$function
     );
+    add_submenu_page(
+        null, //parent page slug
+        'modifier un jeu', //<title>
+        'Modifier un jeu', //titre du menu
+        'manage_options', //capabilities - https://wordpress.org/support/article/roles-and-capabilities/#manage_options
+        'game_update', //slug et url
+        'game_update' //$function
+    );
 };
 
 //function 
 define('ROOTDIR', plugin_dir_path(__FILE__));
 require_once(ROOTDIR . 'blog_list.php');
 require_once(ROOTDIR . 'blog_add.php');
+require_once(ROOTDIR . 'blog_update.php');
